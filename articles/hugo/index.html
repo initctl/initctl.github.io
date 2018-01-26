@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title> Deploy Hugo &middot; John Ripper </title>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.33" />
+
+
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://initctl.github.io/css/nix.css">
+
+
+<link href="https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans|Roboto|Montserrat|Concert+One" rel="stylesheet">
+
+
+
+
+    </head>
+
+    <body>
+        <header>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse font-header">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" id="green-terminal" href=https://initctl.github.io/>john@initctl ~ $</a>
+		</div>
+
+		
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+		
+				
+				
+				<li >
+					<a href="/about">~/about</a>
+				</li>
+				
+				
+				<li >
+					<a href="/categories">~/categories</a>
+				</li>
+				
+
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+
+        <div class="container wrapper">
+            <h1><a href="https://initctl.github.io/articles/hugo/">Deploy Hugo</a></h1>
+            <span class="post-date">Jan 22, 2018 </span>
+            <div class="post-content">
+                <h1 id="εισαγωγή">Εισαγωγή</h1>
+
+<p>Είναι σχετικά εύκολο να δημιουργήσουμε ένα στατικό blog, σαν αυτό που βλέπουμε εδώ. Αυτό που χρειαζόμαστε είναι βασικές γνώσεις Linux και χρήσης τερματικού, ένα λογαριασμό στο GitHub και δυο αποθετήρια. Το ένα θα φιλοξενεί τα source files του blog και το άλλο τα public files, εκείνα που γίνονται renderend όταν τρέξουμε τη κατάλληλη εντολή (θα δούμε παρακάτω).</p>
+
+<p></p>
+
+<ul>
+<li>Ημερομηνία: 22 Ιανουαρίου 2018</li>
+<li>Λειτουργικό Σύστημα: Debian</li>
+<li>Έκδοση: 10 (Buster)</li>
+</ul>
+
+<h2 id="εγκατάσταση-πακέτων">Εγκατάσταση πακέτων</h2>
+
+<pre><code>:~# apt-get install git
+:~# apt-get install hugo
+</code></pre>
+
+<h2 id="hugo-basics">Hugo Basics</h2>
+
+<h4 id="δημιουργία-site">Δημιουργία site</h4>
+
+<pre><code>hugo new site my-site
+cd my-site &amp;&amp; ls
+</code></pre>
+
+<h4 id="λήψη-και-εγκατάσταση-ενός-theme">Λήψη και εγκατάσταση ενός theme</h4>
+
+<pre><code>cd themes
+git clone https://github.com/budparr/gohugo-theme-ananke.git
+</code></pre>
+
+<h4 id="λήψη-όλων-των-διαθέσιμων-themes">Λήψη όλων των διαθέσιμων themes</h4>
+
+<pre><code>cd themes
+git clone --depth 1 --recursive https://github.com/gohugoio/hugoThemes.git
+</code></pre>
+
+<h4 id="preview-ενός-theme">Preview ενός theme</h4>
+
+<pre><code>hugo server -t gohugo-theme-ananke
+</code></pre>
+
+<p>και βλέπουμε το site μας ζωνταντό στο <a href="http://localhost:1313/">http://localhost:1313/</a></p>
+
+<h4 id="χρήση-ενός-theme">Χρήση ενός theme</h4>
+
+<pre><code>echo 'theme= &quot;gohugo-theme-ananke&quot;' &gt;&gt; config.toml
+</code></pre>
+
+<h4 id="δημιουργία-post">Δημιουργία Post</h4>
+
+<pre><code>hugo new posts/about.md
+</code></pre>
+
+<h4 id="post-editing">Post editing</h4>
+
+<p>Εδώ επιλέγουμε έναν markdown editor της αρεσκείας μας και ανοίγουμε το αρχείο (about.md), γράφουμε ότι θέλουμε και αποθηκεύουμε.</p>
+
+<h4 id="post-preview">Post preview</h4>
+
+<pre><code>hugo server -D
+</code></pre>
+
+<h4 id="config-toml-example">config.toml (example)</h4>
+
+<p><em>Δίνουμε ιδιαίτερη σημασία στο baseURL</em></p>
+
+<pre><code>contentDir = &quot;content&quot;
+languageCode = &quot;en-us, el-gr&quot;
+buildDrafts = false
+baseURL = &quot;https://initctl.github.io/&quot;
+title = &quot;initctl&quot;
+theme= &quot;gohugo-theme-ananke&quot;
+
+MetaDataFormat = &quot;yaml&quot;
+DefaultContentLanguage = &quot;en&quot;
+SectionPagesMenu = &quot;main&quot;
+Paginate = 3
+
+[taxonomies]
+category = &quot;articles&quot;
+
+[params]
+  author = &quot;initctl&quot;
+  facebook = &quot;https://facebook.com/jonh.ripper.507&quot; 
+  github = &quot;https://github.com/initctl&quot;
+  recent_posts_number = 3
+</code></pre>
+
+<h4 id="post-example">Post (example)</h4>
+
+<pre><code>---
+title: &quot;Deploy Hugo&quot; # αυτόματη εισαγωγή βασισμένη στο όνομα αρχείου md
+featured_image: '/images/gohugo-default-sample-hero-image.jpg'# χειροκίνητη εισαγωγή
+description: &quot;Πως δημιουργούμε ένα site σαν αυτό.&quot; # χειροκίνητη εισαγωγή
+language: &quot;el&quot; # χειροκίνητη εισαγωγή
+date: 2018-01-21T18:26:23-05:00 # αυτόματη εισαγωγή
+draft: true # αυτόματη εισαγωγή. Γι' αυτό παρακάτω δίνουμε -D για να κάνει rendered και τα Drafts
+---
+</code></pre>
+
+<h2 id="hugo-on-github">Hugo on GitHub</h2>
+
+<p>Δημιουργούμε έναν λογαριασμό στο GitHub. <strong>Προσοχή στο όνομα</strong>, αυτό είναι και το όνομα που θα πάρει το site μας και δεν αλλάζει. Αν έχουμε ήδη λογαριασμό και δεν μας αρέσει το όνομα, τότε ή δημιουργούμε άλλο, ή δημιουργούμε ένα organization. Το GitHub επιτρέπει δημιουργία σελίδων (Github Pages) και με τη χρήση αποθετηρίου ενός Organization.</p>
+
+<ol>
+<li>Δημιουργούμε ένα αποθετήριο για τα source files του blog μας. Ας το ονομάσουμε blog.</li>
+<li>Δημιουργούμε ένα αποθετήριο το οποίο θα έχει απαραιτήτως το όνομα: <strong>USERNAME.github.io</strong><br /></li>
+</ol>
+
+<p>Τα αποθετήρια τα κάνουμε initialize τουλάχιστον με ένα readme.md. Ένα κλικ στο github είναι.</p>
+
+<p><strong>Στον υπολογιστή μας:</strong></p>
+
+<pre><code>git clone git@github.com:USERNAME/blog.git &amp;&amp; cd blog
+</code></pre>
+
+<p>Φτιάχνουμε το site όπως θέλουμε και τις δημοσιεύσεις μας επίσης. Themes, posts, config.toml κλπ.<br />
+Δοκιμάζουμε:</p>
+
+<pre><code>hugo server -D
+</code></pre>
+
+<p>Όταν είμαστε εντάξει διαγράφουμε τον κατάλογο <strong>public</strong> , εάν υπάρχει.</p>
+
+<pre><code>rm public/ -rf
+</code></pre>
+
+<p>Σε αυτό το βήμα θα κάνουμε το εξής. Θα συνδέσουμε το άλλο αποθετήριο (εκείνο με το όνομα του site μας) στο υπάρχον αποθετήριο (blog) κάτω από τον κατάλογο public, αυτόν που διαγράψαμε πρίν.<br />
+<em>Γι&rsquo; αυτό τον διαγράψαμε, για να τον δημιουργήσουμε ξανά αλλά αυτή τη φορά συνδεδεμένο με τη σελίδα μας, GitHub Page.</em></p>
+
+<pre><code>git submodule add -b master git@github.com:&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public
+</code></pre>
+
+<p>Τώρα κάθε φορά που θα τρέχουμε την εντολή <code>hugo</code> θα κάνει rendered και populate τα αρχεία στον κατάλογο <strong>public</strong> ο οποίος έχει ως master το αποθετήριο της GitHub Page. Καλό;<br />
+Έπειτα για να δημοσιεύσουμε τις αλλαγές μπαίνουμε πρώτα στον <strong>public</strong> και δίνουμε:</p>
+
+<pre><code>git add --all &amp;&amp; git commit -m &quot;rebuilding site&quot; 
+git push
+</code></pre>
+
+<p>Μετά στον αρχικό κατάλογο (blog) δημοσιεύουμε κι εκεί τις αλλαγές με:</p>
+
+<pre><code>git add --all &amp;&amp; git commit -m &quot;rebuilding site&quot; 
+git push
+</code></pre>
+
+<p>Τρέχουμε δηλαδή το ίδιο σετάκι εντολών δυο φορές. Μια στον <strong>public</strong> και μιά στον ριζικό (ένα κατάλογο επάνω)</p>
+
+<h2 id="συμβουλή">Συμβουλή</h2>
+
+<p>Τα themes και οι ρυθμίσεις στο hugo είναι ατελείωτες. Βρίσκουμε ένα που μας αρέσει και δημιουργούμε περιεχόμενο, όχι ομορφιά μόνο.</p>
+
+<h2 id="references">References</h2>
+
+<ol>
+<li><a href="https://gohugo.io/about">https://gohugo.io/about</a><br /></li>
+<li><a href="https://pages.github.com">https://pages.github.com</a><br /></li>
+<li><a href="http://themes.gohugo.io">http://themes.gohugo.io</a></li>
+</ol>
+            </div>
+            
+            <div class="post-comments">
+                
+            </div>
+            
+            <div class="push"></div>
+        </div>
+        <footer class="footer text-center">
+<p>Copyleft (ɔ)  2018 John Ripper -
+<span class="credit">
+	Powered by
+	<a target="_blank" href="https://gohugo.io">Hugo</a>
+</span>
+</p>
+</footer>
+
+    </body>

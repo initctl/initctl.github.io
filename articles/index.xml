@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Articles on John Ripper</title>
+    <link>https://initctl.github.io/articles/</link>
+    <description>Recent content in Articles on John Ripper</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://initctl.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deploy Hugo</title>
+      <link>https://initctl.github.io/articles/hugo/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://initctl.github.io/articles/hugo/</guid>
+      <description>&lt;h1 id=&#34;εισαγωγή&#34;&gt;Εισαγωγή&lt;/h1&gt;
+
+&lt;p&gt;Είναι σχετικά εύκολο να δημιουργήσουμε ένα στατικό blog, σαν αυτό που βλέπουμε εδώ. Αυτό που χρειαζόμαστε είναι βασικές γνώσεις Linux και χρήσης τερματικού, ένα λογαριασμό στο GitHub και δυο αποθετήρια. Το ένα θα φιλοξενεί τα source files του blog και το άλλο τα public files, εκείνα που γίνονται renderend όταν τρέξουμε τη κατάλληλη εντολή (θα δούμε παρακάτω).&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
